@@ -38,8 +38,10 @@ h1 {
 
 .error, .success {
   color: #fff;
-  padding: 5px;
-  margin: 5px 0 15px 0;
+  padding: 3px 6px;
+  margin: 0 0 5px 0;
+  font-size: 10px;
+  width: 100%;
 }
 
 .error {
