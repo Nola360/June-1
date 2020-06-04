@@ -3,11 +3,9 @@ function Book(title, author, isbn) {
   this.title = title;
   this.author = author;
   this.isbn = isbn;
-
 }
 
-// UI Constructor
-
+// UI Constructor for prototype storage
 function UI() {
 
 }
@@ -33,6 +31,16 @@ UI.prototype.clearFields = function () {
     author = document.querySelector('#author').value = '',
     isbn = document.querySelector('#isbn').value = '';
 }
+
+UI.prototype.deleteBook = function (e) {
+  if (e.target.className === 'fas fa-times') {
+    e.target.parentElement.parentElement.remove();
+
+  }
+
+}
+
+
 
 UI.prototype.showAlert = function (message, className) {
   // Constructing div element
@@ -62,18 +70,16 @@ UI.prototype.showAlert = function (message, className) {
 
 // Event Listners
 document.getElementById('book_form').addEventListener('submit', function (e) {
-
-  // Targets input value
+  // Obtains input fields value
   const title = document.querySelector('#title').value,
     author = document.querySelector('#author').value,
     isbn = document.querySelector('#isbn').value;
 
-  // Book Instanciation
+  // Book object Instanciation
   const book = new Book(title, author, isbn);
 
-  // UI instanciation
+  // UI object instanciation
   const ui = new UI();
-
 
   if (title === '' || author === '' || isbn === '') {
     // Error
@@ -84,14 +90,24 @@ document.getElementById('book_form').addEventListener('submit', function (e) {
     // Adds book to list via method in UI constructor
     ui.addBookToList(book);
 
+    ui.showAlert('Book added!', 'success');
+
     // Clear Fields
     ui.clearFields();
-
-    ui.showAlert('Book added!', 'success');
   }
-
 
   // console.log(book);
   e.preventDefault();
 })
 
+document.querySelector('#book_list').addEventListener('click', function (e) {
+
+  // Instanciate UI
+  const ui = new UI();
+
+  // Call UI function
+  ui.deleteBook(e);
+
+  // Call UI showAlert function
+  ui.showAlert('Book Deleted!', 'success');
+});
