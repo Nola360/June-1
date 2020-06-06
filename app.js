@@ -10,7 +10,7 @@ function UI() {
 
 }
 
-
+// Add Book Prototype Method
 UI.prototype.addBookToList = function (book) {
   // Targets html table
   let list = document.querySelector('#book_list');
@@ -26,12 +26,14 @@ UI.prototype.addBookToList = function (book) {
   list.appendChild(row);
 }
 
+// Clear Fields Prototype Method
 UI.prototype.clearFields = function () {
   const title = document.querySelector('#title').value = '',
     author = document.querySelector('#author').value = '',
     isbn = document.querySelector('#isbn').value = '';
 }
 
+// Delete Book Prototype Method
 UI.prototype.deleteBook = function (e) {
   if (e.target.className === 'fas fa-times') {
     e.target.parentElement.parentElement.remove();
@@ -40,8 +42,7 @@ UI.prototype.deleteBook = function (e) {
 
 }
 
-
-
+// Show Alert Prototype Method
 UI.prototype.showAlert = function (message, className) {
   // Constructing div element
   const message_box = document.createElement('div');
@@ -65,6 +66,8 @@ UI.prototype.showAlert = function (message, className) {
   setTimeout(function () {
     document.querySelector('.alert').remove()
   }, 3000);
+
+
 }
 
 
@@ -98,6 +101,8 @@ document.getElementById('book_form').addEventListener('submit', function (e) {
 
   // console.log(book);
   e.preventDefault();
+
+  console.log(ui);
 })
 
 document.querySelector('#book_list').addEventListener('click', function (e) {
@@ -111,3 +116,4 @@ document.querySelector('#book_list').addEventListener('click', function (e) {
   // Call UI showAlert function
   ui.showAlert('Book Deleted!', 'success');
 });
+
